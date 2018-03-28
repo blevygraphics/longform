@@ -1,0 +1,32 @@
+{
+  "name": "longform",
+  "version": "1.0.0",
+  "description": "longform wordpress theme",
+  "main": "index.js",
+  "dependencies": {
+    "gulp-sass": "^3.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.2.1",
+    "gulp-uglify": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blevygraphics/longform.git"
+  },
+  "keywords": [
+    "longform"
+  ],
+  "author": "blaine levy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blevygraphics/longform/issues"
+  },
+  "homepage": "https://github.com/blevygraphics/longform#readme"
+}
