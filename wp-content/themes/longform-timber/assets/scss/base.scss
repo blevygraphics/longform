@@ -1,5 +1,17 @@
-.header{
-    color:white;
-}
+// ========================= //
+// Theme Variable Overwrites //
+// ========================= //
 
-.tips{  }
+@import "theme/_variables.scss";
+
+// ========================= //
+// Core Styles               //
+// ========================= //
+
+@import "bootstrap/bootstrap";
+
+// ========================= //
+// Child Theme               //
+// ========================= //
+
+@import "theme/_typography.scss";
