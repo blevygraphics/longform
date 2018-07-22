@@ -4,7 +4,9 @@
   "description": "longform wordpress theme",
   "main": "index.js",
   "dependencies": {
-    "gulp-sass": "^3.2.1"
+    "bootstrap": "^4.1.2",
+    "gulp-sass": "^3.2.1",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
