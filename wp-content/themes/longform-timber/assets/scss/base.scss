@@ -1,15 +1,5 @@
-// ========================= //
-// Theme Variable Overwrites //
-// ========================= //
 @import "theme/_custom.scss";
-// ========================= //
-// Core Styles               //
-// ========================= //
 
-@import "bootstrap/bootstrap";
-
-// ========================= //
-// Child Theme               //
-// ========================= //
+@import "~bootstrap/scss/bootstrap";
 
 @import "theme/_typography.scss";
