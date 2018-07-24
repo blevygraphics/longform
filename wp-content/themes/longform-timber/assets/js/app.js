@@ -1,9 +1,5 @@
-//Require SASS
-require('../scss/main.scss')
+//Require custom js
+require('custom/script')
 
-//Require CSS
-require('../style.css')
 
-//Require scripts
-require('./script')
 

@@ -1,5 +1,8 @@
+// Custome Theme 
 @import "theme/_custom.scss";
 
-@import "~bootstrap/scss/bootstrap";
+// Import Bootstrap Core
+@import "node_modules/bootstrap/scss/bootstrap";
 
+// Typography Settings
 @import "theme/_typography.scss";
