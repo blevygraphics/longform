@@ -15,8 +15,8 @@
  *      8. InjectCSS instead of browser page reload.
  *      9. Generates .pot file for i18n and l10n.
  *
- * @author Ahmad Awais (@ahmadawais)
- * @version 1.0.3
+ * @author Blaine Levy (@tilliumdesignco)
+ * @version 1.0
  */
 
 /**
@@ -114,44 +114,6 @@ var lineec       = require('gulp-line-ending-corrector'); // Consistent Line End
 var filter       = require('gulp-filter'); // Enables you to work on a subset of the original files by filtering them using globbing.
 var sourcemaps   = require('gulp-sourcemaps'); // Maps code in a compressed file (E.g. style.css) back to it’s original position in a source file (E.g. structure.scss, which was later combined with other css files to generate style.css)
 var notify       = require('gulp-notify'); // Sends message notification to you
-// var browserSync  = require('browser-sync').create(); // Reloads browser and injects CSS. Time-saving synchronised browser testing.
-// var reload       = browserSync.reload; // For manual browser reload.
-// var wpPot        = require('gulp-wp-pot'); // For generating the .pot file.
-// var sort         = require('gulp-sort'); // Recommended to prevent unnecessary changes in pot-file.
-
-/**
- * Task: `browser-sync`.
- *
- * Live Reloads, CSS injections, Localhost tunneling.
- *
- * This task does the following:
- *    1. Sets the project URL
- *    2. Sets inject CSS
- *    3. You may define a custom port
- *    4. You may want to stop the browser from openning automatically
- */
-// gulp.task( 'browser-sync', function() {
-//   browserSync.init( {
-
-//     // For more options
-//     // @link http://www.browsersync.io/docs/options/
-
-//     // Project URL.
-//     proxy: projectURL,
-
-//     // `true` Automatically open the browser with BrowserSync live server.
-//     // `false` Stop the browser from automatically opening.
-//     open: true,
-
-//     // Inject CSS changes.
-//     // Commnet it to reload browser for every CSS change.
-//     injectChanges: true,
-
-//     // Use a specific port (instead of the one auto-detected by Browsersync).
-//     // port: 7000,
-
-//   } );
-// });
 
 
 /**
@@ -284,32 +246,6 @@ var notify       = require('gulp-notify'); // Sends message notification to you
     .pipe(gulp.dest( imagesDestination ))
     .pipe( notify( { message: 'TASK: "images" Completed! 💯', onLast: true } ) );
  });
-
-
- /**
-  * WP POT Translation File Generator.
-  *
-  * * This task does the following:
-  *     1. Gets the source of all the PHP files
-  *     2. Sort files in stream by path or any custom sort comparator
-  *     3. Applies wpPot with the variable set at the top of this file
-  *     4. Generate a .pot file of i18n that can be used for l10n to build .mo file
-  */
-//  gulp.task( 'translate', function () {
-//      return gulp.src( projectPHPWatchFiles )
-//          .pipe(sort())
-//          .pipe(wpPot( {
-//              domain        : text_domain,
-//              package       : packageName,
-//              bugReport     : bugReport,
-//              lastTranslator: lastTranslator,
-//              team          : team
-//          } ))
-//         .pipe(gulp.dest(translationDestination + '/' + translationFile ))
-//         .pipe( notify( { message: 'TASK: "translate" Completed! 💯', onLast: true } ) )
-
-//  });
-
 
  /**
   * Watch Tasks.
