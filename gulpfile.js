@@ -50,13 +50,13 @@ var styleDestination        = 'wp-content/themes/longform-timber/dist/css'; // P
 // JS Vendor related.
 var jsVendorSRC             = 'wp-content/themes/longform-timber/assets/js/*.js'; // Path to JS vendor folder.
 var jsVendorDestination     = 'wp-content/themes/longform-timber/dist/js/'; // Path to place the compiled JS vendors file.
-var jsVendorFile            = 'vendors'; // Compiled JS vendors file name.
+var jsVendorFile            = 'global'; // Compiled JS vendors file name.
 // Default set to vendors i.e. vendors.js.
 
 // JS Custom related.
-var jsCustomSRC             = 'wp-content/themes/longform-timber/assets/js/custom/*.js'; // Path to JS custom scripts folder.
-var jsCustomDestination     = 'wp-content/themes/longform-timber/dist/js/'; // Path to place the compiled JS custom scripts file.
-var jsCustomFile            = 'custom'; // Compiled JS custom file name.
+// var jsCustomSRC             = 'wp-content/themes/longform-timber/assets/js/custom/*.js'; // Path to JS custom scripts folder.
+// var jsCustomDestination     = 'wp-content/themes/longform-timber/dist/js/'; // Path to place the compiled JS custom scripts file.
+// var jsCustomFile            = 'custom'; // Compiled JS custom file name.
 // Default set to custom i.e. custom.js.
 
 // Images related.
@@ -66,7 +66,7 @@ var imagesDestination       = 'wp-content/themes/longform-timber/dist/img/'; // 
 // Watch files paths.
 var styleWatchFiles         = 'wp-content/themes/longform-timber/assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 var vendorJSWatchFiles      = 'wp-content/themes/longform-timber/assets/js/*.js'; // Path to all vendor JS files.
-var customJSWatchFiles      = 'wp-content/themes/longform-timber/assets/js/custom/*.js'; // Path to all custom JS files.
+// var customJSWatchFiles      = 'wp-content/themes/longform-timber/assets/js/custom/*.js'; // Path to all custom JS files.
 // var projectPHPWatchFiles    = './**/*.php'; // Path to all PHP files.
 
 
@@ -130,7 +130,7 @@ var notify       = require('gulp-notify'); // Sends message notification to you
  *    6. Minifies the CSS file and generates style.min.css
  *    7. Injects CSS or reloads the browser via browserSync
  */
- gulp.task('styles', function () {
+ gulp.task('sass', function () {
     gulp.src( styleSRC )
     .pipe( sourcemaps.init() )
     .pipe( sass( {
@@ -179,8 +179,12 @@ var notify       = require('gulp-notify'); // Sends message notification to you
   *     3. Renames the JS file with suffix .min.js
   *     4. Uglifes/Minifies the JS file and generates vendors.min.js
   */
- gulp.task( 'vendorsJs', function() {
-  gulp.src( 'node_modules/jquery/dist/jquery.js','node_modules/bootstrap/dist/js/bootstrap.js', jsVendorSRC )
+gulp.task( 'scripts', function() {
+  gulp.src( 
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js', 
+        // jsVendorSRC 
+    )
     .pipe( concat( jsVendorFile + '.js' ) )
     .pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
     .pipe( gulp.dest( jsVendorDestination ) )
@@ -206,20 +210,20 @@ var notify       = require('gulp-notify'); // Sends message notification to you
   *     3. Renames the JS file with suffix .min.js
   *     4. Uglifes/Minifies the JS file and generates custom.min.js
   */
- gulp.task( 'customJS', function() {
-    gulp.src( jsCustomSRC )
-    .pipe( concat( jsCustomFile + '.js' ) )
-    .pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-    .pipe( gulp.dest( jsCustomDestination ) )
-    .pipe( rename( {
-      basename: jsCustomFile,
-      suffix: '.min'
-    }))
-    .pipe( uglify() )
-    .pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-    .pipe( gulp.dest( jsCustomDestination ) )
-    .pipe( notify( { message: 'TASK: "customJs" Completed! 💯', onLast: true } ) );
- });
+//  gulp.task( 'customJS', function() {
+//     gulp.src( jsCustomSRC )
+//     .pipe( concat( jsCustomFile + '.js' ) )
+//     .pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
+//     .pipe( gulp.dest( jsCustomDestination ) )
+//     .pipe( rename( {
+//       basename: jsCustomFile,
+//       suffix: '.min'
+//     }))
+//     .pipe( uglify() )
+//     .pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
+//     .pipe( gulp.dest( jsCustomDestination ) )
+//     .pipe( notify( { message: 'TASK: "customJs" Completed! 💯', onLast: true } ) );
+//  });
 
 
  /**
@@ -252,9 +256,8 @@ var notify       = require('gulp-notify'); // Sends message notification to you
   *
   * Watches for file changes and runs specific tasks.
   */
- gulp.task( 'default', ['styles', 'vendorsJs', 'customJS', 'images'], function () {
+ gulp.task( 'watch', ['sass', 'scripts', 'images'], function () {
 //   gulp.watch( projectPHPWatchFiles, reload ); // Reload on PHP file changes.
-  gulp.watch( styleWatchFiles, [ 'styles' ] ); // Reload on SCSS file changes.
-  gulp.watch( vendorJSWatchFiles, [ 'vendorsJs', reload ] ); // Reload on vendorsJs file changes.
-  gulp.watch( customJSWatchFiles, [ 'customJS', reload ] ); // Reload on customJS file changes.
+  gulp.watch( styleWatchFiles, [ 'sass' ] ); // Reload on SCSS file changes.
+  gulp.watch( vendorJSWatchFiles, [ 'scripts', reload ] ); // Reload on scripts file changes.
  });
